@@ -7,12 +7,6 @@ COPY mvnw pom.xml ./
 RUN ./mvnw dependency:resolve
 COPY src ./src
 
-FROM base AS test
-RUN ./mvnw test -Dspring.profiles.active=native
-
-FROM base AS debug
-ENTRYPOINT ./mvnw spring-boot:run -Dspring-boot.run.profiles=native -Dspring-boot.run.jvmArguments='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000'
-
 FROM base AS package
 RUN ./mvnw package -Dspring.profiles.active=native
 
