@@ -2,6 +2,6 @@ example:
   property: I AM DEV
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ostock_dev
-    username: postgres
-    password: postgres
+    url: "jdbc:postgresql://postgres/ostock_dev"
+    username: "{cipher}d687eb393fb4b5b4d972161c39d28ebd9e340c352155ec3ae0ce23bb9a3186cd"
+    password: "{cipher}b7469ab3991780e29368a34984e95412c00f4f32a3c75c9daffe8c343e2d9a15"
