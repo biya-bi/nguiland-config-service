@@ -8,7 +8,7 @@ RUN ./mvnw dependency:resolve
 COPY src ./src
 
 FROM base AS package
-RUN ./mvnw package -Dspring.profiles.active=native
+RUN ./mvnw package
 
 FROM eclipse-temurin:17-jre-jammy AS build
 WORKDIR /target
@@ -23,4 +23,4 @@ COPY --from=build ${OUTPUT_DIR}/dependencies/ ./
 COPY --from=build ${OUTPUT_DIR}/spring-boot-loader/ ./
 COPY --from=build ${OUTPUT_DIR}/snapshot-dependencies/ ./
 COPY --from=build ${OUTPUT_DIR}/application/ ./
-ENTRYPOINT java -Dspring.profiles.active=native org.springframework.boot.loader.launch.JarLauncher
+ENTRYPOINT java org.springframework.boot.loader.launch.JarLauncher
