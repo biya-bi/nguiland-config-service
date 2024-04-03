@@ -16,12 +16,18 @@ public final class EnvFilesReader {
     static final String ENV_FILE_EMPTY = "The file with path '%s' must contain a non-blank line";
     static final String ENCRYPT_KEY_PROP = "encrypt.key";
     static final String ENCRYPT_KEY_FILE = "ENCRYPT_KEY_FILE";
-    
+    static final String SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME_PROP = "spring.cloud.config.server.git.username";
+    static final String GIT_USERNAME_FILE = "GIT_USERNAME_FILE";
+    static final String SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD_PROP = "spring.cloud.config.server.git.password";
+    static final String GIT_PASSWORD_FILE = "GIT_PASSWORD_FILE";
+
     private EnvFilesReader() {
     }
 
     public static void read() throws IOException {
         System.setProperty(ENCRYPT_KEY_PROP, readEnvFile(ENCRYPT_KEY_FILE, true));
+        System.setProperty(SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME_PROP, readEnvFile(GIT_USERNAME_FILE, true));
+        System.setProperty(SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD_PROP, readEnvFile(GIT_PASSWORD_FILE, true));
     }
 
     // Made package-private for unit testing
