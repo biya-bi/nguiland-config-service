@@ -1,4 +1,4 @@
-package com.optimagrowth.configserver.io;
+package com.optimagrowth.config.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.optimagrowth.configserver.util.Env;
+import com.optimagrowth.config.util.Env;
 
 public final class EnvFilesReader {
 

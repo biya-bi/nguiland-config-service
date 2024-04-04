@@ -1,5 +1,5 @@
 spring:
   application:
-    name: config-server
+    name: config-service
   profiles:
     active: git

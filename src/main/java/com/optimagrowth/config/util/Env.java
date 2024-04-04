@@ -1,4 +1,4 @@
-package com.optimagrowth.configserver.util;
+package com.optimagrowth.config.util;
 
 public final class Env {
 

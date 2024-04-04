@@ -1,8 +1,8 @@
-package com.optimagrowth.configserver.io;
+package com.optimagrowth.config.io;
 
-import static com.optimagrowth.configserver.io.EnvFilesReader.ENCRYPT_KEY_FILE;
-import static com.optimagrowth.configserver.io.EnvFilesReader.ENV_FILE_EMPTY;
-import static com.optimagrowth.configserver.io.EnvFilesReader.ENV_FILE_NOT_SET;
+import static com.optimagrowth.config.io.EnvFilesReader.ENCRYPT_KEY_FILE;
+import static com.optimagrowth.config.io.EnvFilesReader.ENV_FILE_EMPTY;
+import static com.optimagrowth.config.io.EnvFilesReader.ENV_FILE_NOT_SET;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
@@ -20,7 +20,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.optimagrowth.configserver.util.Env;
+import com.optimagrowth.config.io.EnvFilesReader;
+import com.optimagrowth.config.util.Env;
 
 class EnvFilesReaderTest {
 
