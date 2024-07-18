@@ -16,7 +16,7 @@ public final class EnvFilesReader {
     static final String ENV_FILE_EMPTY = "The file with path '%s' must contain a non-blank line";
     static final String ENCRYPT_KEY_PROP = "encrypt.key";
     static final String ENCRYPT_KEY_FILE = "ENCRYPT_KEY_FILE";
-    static final String SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS = "spring.cloud.config.server.git.ignore-local-ssh-settings";
+    static final String SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS = "spring.cloud.config.server.git.ignoreLocalSshSettings";
     static final String SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP = "spring.cloud.config.server.git.privateKey";
     static final String GIT_PRIVATE_KEY_FILE = "GIT_PRIVATE_KEY_FILE";
 
