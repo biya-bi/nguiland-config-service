@@ -13,19 +13,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import com.optimagrowth.config.util.Env;
 
 class EnvFilesReaderTest {
 
     @Test
-    void readEnvFile_EnvFileIsNotSetAndRequiredIsTrue_ThrowIllegalStateException() throws IOException {
+    void readEnvFile_EnvFileIsNotSetAndRequiredIsTrue_ThrowIllegalStateException() {
         try (var envMockedStatic = mockStatic(Env.class)) {
             // Emulate unset environment variable by returning null
             envMockedStatic.when(() -> Env.get(ENCRYPT_KEY_FILE)).thenReturn(null);
@@ -48,11 +47,10 @@ class EnvFilesReaderTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = { 1, 2 })
-    void readEnvFile_EnvFileIsNotEmpty_ReturnFirstNonBlankLine(int numberOfLines) throws IOException {
+    @Test
+    void readEnvFile_EnvFileIsNotEmpty_ReturnContent() throws IOException {
         var file = createTempFile();
-        var strings = generateRandomStrings(numberOfLines);
+        var strings = generateRandomStrings(2);
 
         write(file, strings);
 
@@ -61,12 +59,12 @@ class EnvFilesReaderTest {
 
             var content = EnvFilesReader.readEnvFile(ENCRYPT_KEY_FILE, true);
 
-            assertEquals(strings.get(0), content);
+            assertEquals(join(strings), content);
         }
     }
 
     @Test
-    void readEnvFile_FirstLineIsBlankAndSecondLineIsNotBlank_ReturnSecondLine() throws IOException {
+    void readEnvFile_FirstLineIsBlankAndSecondLineIsNotBlank_ReturnContent() throws IOException {
         var file = createTempFile();
         var strings = generateRandomStrings(1);
         // Make the first line blank
@@ -79,7 +77,7 @@ class EnvFilesReaderTest {
 
             var content = EnvFilesReader.readEnvFile(ENCRYPT_KEY_FILE, true);
 
-            assertEquals(strings.get(1), content);
+            assertEquals(join(strings), content);
         }
     }
 
@@ -131,5 +129,9 @@ class EnvFilesReaderTest {
             strings.add(RandomStringUtils.random(10, true, true));
         }
         return strings;
+    }
+
+    private String join(List<String> lines) {
+        return lines.stream().collect(Collectors.joining(System.lineSeparator()));
     }
 }
