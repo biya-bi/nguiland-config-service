@@ -1,8 +1,12 @@
 package com.optimagrowth.config.io;
 
 import static com.optimagrowth.config.io.EnvFilesReader.ENCRYPT_KEY_FILE;
+import static com.optimagrowth.config.io.EnvFilesReader.ENCRYPT_KEY_PROP;
 import static com.optimagrowth.config.io.EnvFilesReader.ENV_FILE_EMPTY;
 import static com.optimagrowth.config.io.EnvFilesReader.ENV_FILE_NOT_SET;
+import static com.optimagrowth.config.io.EnvFilesReader.GIT_PRIVATE_KEY_FILE;
+import static com.optimagrowth.config.io.EnvFilesReader.SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS;
+import static com.optimagrowth.config.io.EnvFilesReader.SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
@@ -24,6 +28,29 @@ import com.optimagrowth.config.util.Env;
 class EnvFilesReaderTest {
 
     @Test
+    void read_AllEnvironmentVariablePropertiesAreSet_SetSystemProperties() throws IOException {
+        var encryptKeyFile = createTempFile();
+        var encryptKeyFileContent = generateRandomStrings(1);
+        write(encryptKeyFile, encryptKeyFileContent);
+
+        var gitPrivateKeyFile = createTempFile();
+        var gitPrivateKeyFileContent = generateRandomStrings(5);
+        write(gitPrivateKeyFile, gitPrivateKeyFileContent);
+
+        try (var envMockedStatic = mockStatic(Env.class)) {
+            envMockedStatic.when(() -> Env.get(ENCRYPT_KEY_FILE)).thenReturn(encryptKeyFile.getPath());
+            envMockedStatic.when(() -> Env.get(GIT_PRIVATE_KEY_FILE)).thenReturn(gitPrivateKeyFile.getPath());
+
+            EnvFilesReader.read();
+
+            assertEquals(join(encryptKeyFileContent), System.getProperty(ENCRYPT_KEY_PROP));
+            assertEquals(String.valueOf(true),
+                    System.getProperty(SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS));
+            assertEquals(join(gitPrivateKeyFileContent), System.getProperty(SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP));
+        }
+    }
+
+    @Test
     void readEnvFile_EnvFileIsNotSetAndRequiredIsTrue_ThrowIllegalStateException() {
         try (var envMockedStatic = mockStatic(Env.class)) {
             // Emulate unset environment variable by returning null
@@ -32,6 +59,26 @@ class EnvFilesReaderTest {
             var e = assertThrows(IllegalStateException.class, () -> EnvFilesReader.readEnvFile(ENCRYPT_KEY_FILE, true));
 
             assertEquals(String.format(ENV_FILE_NOT_SET, ENCRYPT_KEY_FILE), e.getMessage());
+        }
+    }
+
+    @Test
+    void readEnvFile_EnvFileOnlyContainsBlankLines_ThrowIllegalStateException() throws IOException {
+        var file = createTempFile();
+        var strings = new ArrayList<String>();
+        // Add only blank lines
+        strings.add(StringUtils.EMPTY);
+        strings.add(System.lineSeparator());
+        strings.add("    ");
+
+        write(file, strings);
+
+        try (var envMockedStatic = mockStatic(Env.class)) {
+            envMockedStatic.when(() -> Env.get(ENCRYPT_KEY_FILE)).thenReturn(file.getPath());
+
+            var e = assertThrows(IllegalStateException.class, () -> EnvFilesReader.readEnvFile(ENCRYPT_KEY_FILE, true));
+
+            assertEquals(String.format(ENV_FILE_EMPTY, file.getPath()), e.getMessage());
         }
     }
 
