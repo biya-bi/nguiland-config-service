@@ -17,9 +17,9 @@ public final class EnvReader {
     }
 
     public static void read() throws IOException {
-        System.setProperty(ENCRYPT_KEY_PROP, EnvFileReader.read(ENCRYPT_KEY_FILE, true));
+        System.setProperty(ENCRYPT_KEY_PROP, EnvFileReader.read(ENCRYPT_KEY_FILE));
         System.setProperty(SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS, String.valueOf(true));
-        System.setProperty(SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP, EnvFileReader.read(GIT_PRIVATE_KEY_FILE, true));
+        System.setProperty(SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP, EnvFileReader.read(GIT_PRIVATE_KEY_FILE));
     }
 
 }

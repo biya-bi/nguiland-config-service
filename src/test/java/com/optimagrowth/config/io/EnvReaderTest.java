@@ -22,8 +22,8 @@ class EnvReaderTest {
         var gitPrivateKey = RandomStringUtils.random(10);
 
         try (var envFileReaderMockedStatic = mockStatic(EnvFileReader.class)) {
-            envFileReaderMockedStatic.when(() -> EnvFileReader.read(ENCRYPT_KEY_FILE, true)).thenReturn(encryptKey);
-            envFileReaderMockedStatic.when(() -> EnvFileReader.read(GIT_PRIVATE_KEY_FILE, true))
+            envFileReaderMockedStatic.when(() -> EnvFileReader.read(ENCRYPT_KEY_FILE)).thenReturn(encryptKey);
+            envFileReaderMockedStatic.when(() -> EnvFileReader.read(GIT_PRIVATE_KEY_FILE))
                     .thenReturn(gitPrivateKey);
 
             EnvReader.read();
