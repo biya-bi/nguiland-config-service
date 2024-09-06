@@ -49,7 +49,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.rainbow</groupId>
+			<groupId>org.nguiland</groupId>
 			<artifactId>io-utils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

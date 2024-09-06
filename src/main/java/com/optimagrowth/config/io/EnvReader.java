@@ -2,7 +2,7 @@ package com.optimagrowth.config.io;
 
 import java.io.IOException;
 
-import org.rainbow.io.EnvFileReader;
+import org.nguiland.io.EnvFileReader;
 
 public final class EnvReader {
 

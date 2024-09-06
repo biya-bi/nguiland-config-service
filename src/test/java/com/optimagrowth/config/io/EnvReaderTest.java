@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
-import org.rainbow.io.EnvFileReader;
+import org.nguiland.io.EnvFileReader;
 
 class EnvReaderTest {
 
