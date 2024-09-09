@@ -1,12 +1,12 @@
-package com.optimagrowth.config.io;
+package org.nguiland.config.io;
 
-import static com.optimagrowth.config.io.EnvReader.ENCRYPT_KEY_FILE;
-import static com.optimagrowth.config.io.EnvReader.ENCRYPT_KEY_PROP;
-import static com.optimagrowth.config.io.EnvReader.GIT_PRIVATE_KEY_FILE;
-import static com.optimagrowth.config.io.EnvReader.SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS;
-import static com.optimagrowth.config.io.EnvReader.SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mockStatic;
+import static org.nguiland.config.io.EnvReader.ENCRYPT_KEY_FILE;
+import static org.nguiland.config.io.EnvReader.ENCRYPT_KEY_PROP;
+import static org.nguiland.config.io.EnvReader.GIT_PRIVATE_KEY_FILE;
+import static org.nguiland.config.io.EnvReader.SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS;
+import static org.nguiland.config.io.EnvReader.SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP;
 
 import java.io.IOException;
 

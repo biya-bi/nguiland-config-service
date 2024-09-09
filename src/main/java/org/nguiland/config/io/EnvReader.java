@@ -1,4 +1,4 @@
-package com.optimagrowth.config.io;
+package org.nguiland.config.io;
 
 import java.io.IOException;
 

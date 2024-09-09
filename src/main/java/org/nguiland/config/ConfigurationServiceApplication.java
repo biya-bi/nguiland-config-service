@@ -1,12 +1,11 @@
-package com.optimagrowth.config;
+package org.nguiland.config;
 
 import java.io.IOException;
 
+import org.nguiland.config.io.EnvReader;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
-
-import com.optimagrowth.config.io.EnvReader;
 
 @SpringBootApplication
 @EnableConfigServer
