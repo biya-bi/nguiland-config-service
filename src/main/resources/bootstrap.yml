@@ -2,4 +2,4 @@ spring:
   application:
     name: config-service
   profiles:
-    active: git
+    active: dev
