@@ -7,3 +7,5 @@ spring:
     config:
       uri: http://localhost:8071
       fail-fast: false
+      server:
+        bootstrap: true
