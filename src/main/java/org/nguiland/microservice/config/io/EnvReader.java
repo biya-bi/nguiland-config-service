@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import org.nguiland.io.EnvFileReader;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public final class EnvReader {
 
     // Fields made package-private for unit testing
@@ -12,9 +16,6 @@ public final class EnvReader {
     static final String SPRING_CLOUD_CONFIG_SERVER_GIT_IGNORE_LOCAL_SSH_SETTINGS = "spring.cloud.config.server.git.ignoreLocalSshSettings";
     static final String SPRING_CLOUD_CONFIG_SERVER_GIT_PRIVATE_KEY_PROP = "spring.cloud.config.server.git.privateKey";
     static final String GIT_PRIVATE_KEY_FILE = "GIT_PRIVATE_KEY_FILE";
-
-    private EnvReader() {
-    }
 
     public static void read() throws IOException {
         System.setProperty(ENCRYPT_KEY_PROP, EnvFileReader.read(ENCRYPT_KEY_FILE));
