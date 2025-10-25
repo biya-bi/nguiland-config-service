@@ -1,8 +1,8 @@
-package org.nguiland.config;
+package org.nguiland.microservice.config;
 
 import java.io.IOException;
 
-import org.nguiland.config.io.EnvReader;
+import org.nguiland.microservice.config.io.EnvReader;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;

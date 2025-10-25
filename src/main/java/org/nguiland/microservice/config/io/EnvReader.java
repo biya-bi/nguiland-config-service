@@ -1,4 +1,4 @@
-package org.nguiland.config.io;
+package org.nguiland.microservice.config.io;
 
 import java.io.IOException;
 
