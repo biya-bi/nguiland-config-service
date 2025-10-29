@@ -12,7 +12,7 @@
 	<groupId>org.nguiland.microservice</groupId>
 	<artifactId>config-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Configuration Microservice</name>
+	<name>config-service</name>
 	<description>Configuration Microservice</description>
 	<dependencies>
 		<dependency>
